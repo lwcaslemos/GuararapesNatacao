@@ -1,0 +1,113 @@
+CREATE TABLE IF NOT EXISTS `aluno_t` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `criacao` datetime NOT NULL,
+  `modificacao` datetime NOT NULL,
+  `nome` varchar(60) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `senha` varchar(32) NOT NULL,
+  `rg` varchar(15) NOT NULL,
+  `cpf` varchar(15) NOT NULL,
+  `telefone` varchar(15) NOT NULL,
+  `data_nascimento` date NOT NULL,
+  `cep` varchar(8) NOT NULL,
+  `endereco` varchar(100) NOT NULL,
+  `bairro` varchar(30) NOT NULL,
+  `cidade` varchar(30) NOT NULL,
+  `estado` varchar(2) NOT NULL,
+  `observacao` text NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `CPF` (`CPF`),
+  UNIQUE KEY `RG` (`RG`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12;
+
+CREATE TABLE IF NOT EXISTS `plano_t` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `criacao` datetime NOT NULL,
+  `modificacao` datetime NOT NULL,
+  `nome` varchar(60) NOT NULL,
+  `periodicidade` int(2) NOT NULL,
+  `valormensalidade` varchar(6) NOT NULL,
+  `valormatricula` varchar(6) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nome` (`nome`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12;
+
+CREATE TABLE IF NOT EXISTS `plano_comprado_t` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `criacao` datetime NOT NULL,
+  `modificacao` datetime NOT NULL,
+  `inicio_ciclo` date NOT NULL,
+  `fim_ciclo` date NOT NULL,
+  `valor` varchar(6) NOT NULL,
+  `turno` varchar(5) NOT NULL,
+  `status` varchar(15) NOT NULL,
+  `aluno_id` int(11) NOT NULL,
+  `plano_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (aluno_id) REFERENCES aluno_t(id),
+  FOREIGN KEY (plano_id) REFERENCES plano_t(id)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12;
+
+CREATE TABLE IF NOT EXISTS `pagamento_t` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `criacao` datetime NOT NULL,
+  `modificacao` datetime NOT NULL,
+  `forma_pagamento` varchar(20) NOT NULL,
+  `parcela` int(2) NOT NULL,
+  `valor` varchar(6) NOT NULL,
+  `aluno_id` int(11) NOT NULL,
+  `plano_comprado_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (aluno_id) REFERENCES aluno_t(id),
+  FOREIGN KEY (plano_comprado_id) REFERENCES plano_comprado_t(id)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12;
+
+CREATE TABLE IF NOT EXISTS `agendamento_t` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `criacao` datetime NOT NULL,
+  `modificacao` datetime NOT NULL,
+  `data` date NOT NULL,
+  `hora` time NOT NULL,
+  `aluno_id` int(11) NOT NULL,
+  `plano_comprado_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (aluno_id) REFERENCES aluno_t(id),
+  FOREIGN KEY (plano_comprado_id) REFERENCES plano_comprado_t(id)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12;
+
+CREATE TABLE IF NOT EXISTS `mensagem_t` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `criacao` datetime NOT NULL,
+  `modificacao` datetime NOT NULL,
+  `autor` varchar(20)
+  `texto` text NOT NULL,
+  `aluno_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (aluno_id) REFERENCES aluno_t(id),
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12;
+
+CREATE TABLE IF NOT EXISTS `funcionario_t` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `criacao` datetime NOT NULL,
+  `modificacao` datetime NOT NULL,
+  `nome` varchar(60) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `senha` varchar(32) NOT NULL,
+  `rg` varchar(15) NOT NULL,
+  `cpf` varchar(15) NOT NULL,
+  `telefone` varchar(15) NOT NULL,
+  `data_nascimento` date NOT NULL,
+  `cep` varchar(8) NOT NULL,
+  `funcao` varchar(32) NOT NULL,
+  `admin` int(1) NOT NULL,
+  `endereco` varchar(100) NOT NULL,
+  `bairro` varchar(30) NOT NULL,
+  `cidade` varchar(30) NOT NULL,
+  `estado` varchar(2) NOT NULL,
+  `observacao` text NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `CPF` (`CPF`),
+  UNIQUE KEY `RG` (`RG`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12;

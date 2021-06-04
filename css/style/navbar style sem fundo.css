@@ -1,0 +1,45 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 60px;
+  background-color: #92a8d1;
+  background-repeat: repeat-y;
+  background-size:100%;
+}
+
+body > .container {
+  padding: 60px 15px 0;
+}
+
+code {
+  font-size: 80%;
+}
+
+nav{
+	width: 100%;
+	height: 55px;
+}
+
+nav a img {
+  width: 50px;
+  padding: 2px;
+}
+
+li
+{
+     float: center;
+     margin: 20px; /*Diminui ou aumenta a quantidade de pixels pra variar o espaçamento entre a lista*/ 
+}
+
+#fotouser{
+	width: 50px;
+  padding: 2px;
+}
+
+
+#lidireita{
+	float: center;
+     margin: 0px; /*Diminui ou aumenta a quantidade de pixels pra variar o espaçamento entre a lista*/ 
+}
